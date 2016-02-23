@@ -12,4 +12,6 @@ public interface FoodService {
     List<Food> getFood();
 
     Food getFood(String sid);
+
+    List<Food> searchFood(String query);
 }

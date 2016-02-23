@@ -1,6 +1,5 @@
 package com.mars.food.view;
 
-import com.google.common.collect.ImmutableList;
 import com.mars.food.entity.Food;
 import com.mars.food.service.FoodService;
 import com.mars.food.service.FoodServiceImpl;
@@ -13,7 +12,6 @@ import org.primefaces.event.SelectEvent;
 
 import javax.faces.bean.ManagedBean;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Mars on 2015/12/7.
@@ -25,20 +23,16 @@ public class FoodSearchView {
     @Getter
     private Food food;
 
-
     private FoodService getFacade() {
-        FoodServiceImpl impl = (FoodServiceImpl) WebApplicationContextHelper.getBean(Faces.getServletContext(), "foodServiceImpl");
-        return impl;
+        return (FoodServiceImpl) WebApplicationContextHelper.getBean(Faces.getServletContext(), "foodServiceImpl");
     }
 
     public List<Food> completeFood(String query) {
-        List<Food> allFoods = getFacade().getFood();
-        List<Food> filteredFoods = ImmutableList.copyOf(allFoods.stream().filter(food -> food.getName().toLowerCase().startsWith(query)).collect(Collectors.toList()));
-        return filteredFoods;
+        return getFacade().searchFood(query);
     }
 
     public void onItemSelect(SelectEvent event) {
-        JsfUtil.addSuccessMessage("Get food!");
+        JsfUtil.addSuccessMessage("找到食物!!");
     }
 
 }
