@@ -32,9 +32,10 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public List<Food> searchFood(String query) {
+        String lowCaseQuery = query.toLowerCase();
         List<Food> filteredFoods = getFood().stream()
-                .filter(food -> food.getName().toLowerCase().startsWith(query)
-                        || food.getId().toLowerCase().startsWith(query))
+                .filter(food -> food.getName().toLowerCase().startsWith(lowCaseQuery)
+                        || food.getId().toLowerCase().startsWith(lowCaseQuery))
                 .collect(Collectors.toList());
         return filteredFoods;
     }

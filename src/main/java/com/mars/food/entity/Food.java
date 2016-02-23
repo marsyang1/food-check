@@ -1,6 +1,8 @@
 package com.mars.food.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -10,6 +12,8 @@ import java.util.UUID;
  */
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Food implements Stomach {
 
     @Id
@@ -23,5 +27,10 @@ public class Food implements Stomach {
     private String name = "";
     @Column(name = "DESCRIPTION")
     private String description="";
+
+    public Food(String id,String name){
+        setId(id);
+        setName(name);
+    }
 
 }

@@ -1,2 +1,2 @@
 # food-check
-for checking food should eat
+for checking food for eating
